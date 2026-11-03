@@ -105,60 +105,60 @@ a {
 /* ---------- 5. DROPDOWN NOSOTROS ---------- */
 .dropdown {
   position: relative;
+  display: inline-block;
 }
 
+/* Botón limpio sin bordes ni fondos raros */
 .btn-menu-dropdown {
   background: none;
   border: none;
+  outline: none;
   color: #cbd5e1;
+  font: inherit;
   font-weight: 600;
   cursor: pointer;
-  font-size: 16px;
-  font-family: inherit;
+  padding: 0;
 }
 
-.btn-menu-dropdown:hover {
+/* Cambia a amarillo al pasar el mouse por la zona */
+.dropdown:hover .btn-menu-dropdown {
   color: var(--amarillo);
 }
 
+/* Menú flotante con puente invisible integrado en el padding */
 .dropdown-menu {
   display: none;
   position: absolute;
-  top: 140%;
+  top: 100%;
   right: 0;
   background: #fff;
   min-width: 200px;
   border-radius: 10px;
   box-shadow: 0 10px 20px rgba(0,0,0,.2);
   z-index: 100;
-  overflow: hidden;
   border: 1px solid rgba(0,0,0,0.05);
+  padding-top: 10px; /* Reemplaza el truco largo del ::before */
+  margin-top: -10px;
 }
 
-/* Muestra el desplegable con la clase inyectada por JS */
-.dropdown-menu.show {
-  display: flex !important;
+/* Mostrar menú (por JS o por Hover en PC) */
+.dropdown-menu.show,
+.dropdown:hover .dropdown-menu {
+  display: flex;
   flex-direction: column;
 }
 
+/* Enlaces del menú */
 .dropdown-menu a {
   color: var(--azul) !important;
   padding: 12px 16px;
   font-size: 14px;
-  width: 100%;
 }
 
 .dropdown-menu a:hover {
   background: #fef9c3;
 }
 
-/* Computadora: Despliega de forma segura al pasar el mouse */
-@media (min-width: 769px) {
-  .dropdown:hover .dropdown-menu {
-    display: flex !important;
-    flex-direction: column;
-  }
-}
 
 /* ---------- 6. HERO ---------- */
 .hero-niveles {
@@ -356,9 +356,6 @@ a {
   font-size: 13px;
 }
 
-/* ======================================================
-   ⚠️ MEDIA QUERIES - ADAPTACIÓN EXCLUSIVA PARA CELULARES
-   ====================================================== */
 @media (max-width: 768px) {
   
   .menu-toggle {
